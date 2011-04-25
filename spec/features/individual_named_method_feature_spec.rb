@@ -1,44 +1,45 @@
 require 'spec_helper'
 
 describe "individual named method feature" do
+  before(:each){pending "Individual Method will be implemented"}
   before :all do
-    class Test
-      def no_named_say(phrase)
-        phrase
-      end
+    #class Test
+    #  def no_named_say(phrase)
+    #    phrase
+    #  end
 
-      named def say(phrase)
-        phrase
-      end
+    #  named def say(phrase)
+    #    phrase
+    #  end
 
-      named def optional_say(phrase="I'm mute")
-        phrase
-      end
+    #  named def optional_say(phrase="I'm mute")
+    #    phrase
+    #  end
 
-      named def move_to(x,y)
-        [x,y]
-      end
+    #  named def move_to(x,y)
+    #    [x,y]
+    #  end
 
-      named def three_params_first_optional(x=:x,y,z)
-        [x,y,z]
-      end
+    #  named def three_params_first_optional(x=:x,y,z)
+    #    [x,y,z]
+    #  end
 
-      named def three_params_middle_optional(x,y=:y,z)
-        [x,y,z]
-      end
+    #  named def three_params_middle_optional(x,y=:y,z)
+    #    [x,y,z]
+    #  end
 
-      named def three_params_last_optional(x,y,z=:z)
-        [x,y,z]
-      end
+    #  named def three_params_last_optional(x,y,z=:z)
+    #    [x,y,z]
+    #  end
 
-      named def three_params_first_2_optionals(x=:x,y=:y,z)
-        [x,y,z]
-      end
+    #  named def three_params_first_2_optionals(x=:x,y=:y,z)
+    #    [x,y,z]
+    #  end
 
-      named def three_params_last_2_optionals(x,y=:y,z=:z)
-        [x,y,z]
-      end
-    end
+    #  named def three_params_last_2_optionals(x,y=:y,z=:z)
+    #    [x,y,z]
+    #  end
+    #end
   end
 
   before :each do
@@ -46,10 +47,10 @@ describe "individual named method feature" do
   end
 
   describe "named method" do
-      it "should be called with a hash like parameter" do
-        phrase = @test.say phrase: "Hi!"
-        phrase.should be == "Hi!"
-      end
+    it "should be called with a hash like parameter" do
+      phrase = @test.say phrase: "Hi!"
+      phrase.should be == "Hi!"
+    end
 
     describe "parameter" do
       it "should can be optional" do
