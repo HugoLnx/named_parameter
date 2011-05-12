@@ -41,6 +41,7 @@ describe NamedMethodTransmuter do
 				end
 
 				specify "NamedMethod#errors_when_called_with(args)" do
+          NamedMethod.method_defined?(:errors_when_called_with).should be_true
 					method = @klass.instance_method(:method1)
 					named_method = NamedMethod.new(method)
 					NamedMethod.stub!(:new => named_method)
@@ -49,6 +50,22 @@ describe NamedMethodTransmuter do
 											.and_return([])
 					@instance.method1
 				end
+
+        specify "Errors::SomeError#raise_args" do
+					method = @klass.instance_method(:method1)
+          errors = stub(:errors)
+          NamedMethod.stub_chain(:new,:errors_when_called_with)
+                     .and_return(errors)
+          error = stub(:error)
+          errors.stub!(:first)
+                .and_return(error)
+          errors.stub!(:empty?)
+                .and_return(false)
+					NamedMethodTransmuter.transmute method
+          error.should_receive(:raise_args)
+               .and_return([])
+					lambda{@instance.method1}.should raise_error ArgumentError
+        end
 			end
 		end
 	end

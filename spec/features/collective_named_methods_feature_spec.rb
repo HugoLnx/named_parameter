@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "collective named method feature" do
   before :all do
+    pending
     class Test
       def no_named_say(phrase)
         phrase
@@ -86,7 +87,7 @@ describe "collective named method feature" do
 
       context "ArgumentError when" do
         it "called but not defined" do
-          lambda{@test.say(phrase: "hi!",undefined: "hugo")}.should raise_error ArgumentError
+          lambda{@test.say(phrase: "hi!",undefined: "hugo")}.should raise_error ArgumentError, /'undefined'[\w\s]*'say'/
           lambda{@test.say(undefined: "hugo")}.should raise_error ArgumentError
         end
 

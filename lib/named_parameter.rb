@@ -1,16 +1,15 @@
 require 'named_parameter/named_method'
 require 'named_parameter/named_method_transmuter'
+require 'named_parameter/errors'
+require 'named_parameter/error'
 
-class Class
-  def named
-    @naming = true
+class Module
+  def named(def_return)
+    method = self.instance_method(@last_method_added)
+    NamedMethodTransmuter.transmute method
   end
 
   def method_added(method_name)
-    return unless @naming
-    @naming = false
-    method = self.instance_method(method_name)
-		NamedMethodTransmuter.transmute method
-    @naming = true
+    @last_method_added = method_name
   end
 end

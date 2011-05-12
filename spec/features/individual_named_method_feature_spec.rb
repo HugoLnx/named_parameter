@@ -1,92 +1,116 @@
 require 'spec_helper'
 
 describe "individual named method feature" do
-  before(:each){pending "Individual Method will be implemented"}
-  before :all do
-    #class Test
-    #  def no_named_say(phrase)
-    #    phrase
-    #  end
+  describe "becomes possible:" do
+    describe 'Named Parameter' do
+      specify %q{
+        named def say(phrase)
+          phrase
+        end
 
-    #  named def say(phrase)
-    #    phrase
-    #  end
+        say phrase: "Hi!"
+          # => "Hi!"
+      } do
+        module Kernel
+          named def say(phrase)
+            phrase
+          end
+        end
 
-    #  named def optional_say(phrase="I'm mute")
-    #    phrase
-    #  end
-
-    #  named def move_to(x,y)
-    #    [x,y]
-    #  end
-
-    #  named def three_params_first_optional(x=:x,y,z)
-    #    [x,y,z]
-    #  end
-
-    #  named def three_params_middle_optional(x,y=:y,z)
-    #    [x,y,z]
-    #  end
-
-    #  named def three_params_last_optional(x,y,z=:z)
-    #    [x,y,z]
-    #  end
-
-    #  named def three_params_first_2_optionals(x=:x,y=:y,z)
-    #    [x,y,z]
-    #  end
-
-    #  named def three_params_last_2_optionals(x,y=:y,z=:z)
-    #    [x,y,z]
-    #  end
-    #end
-  end
-
-  before :each do
-    @test = Test.new
-  end
-
-  describe "named method" do
-    it "should be called with a hash like parameter" do
-      phrase = @test.say phrase: "Hi!"
-      phrase.should be == "Hi!"
+        phrase = @test.say phrase: "Hi!"
+        phrase.should be == "Hi!"
+      end
     end
 
-    describe "parameter" do
-      it "should can be optional" do
-        @test.optional_say.should be == "I'm mute"
+    describe 'Optional Named Parameter' do
+      specify %q{
+        named def say(phrase="I'm mute")
+          phrase
+        end
+
+        say
+          # => "I'm mute"
+      } do
+        module Kernel
+          named def say(phrase="I'm mute")
+            phrase
+          end
+        end
+
+        phrase = say
+        phrase.should be == "I'm mute"
       end
+    end
 
-      context "multiple" do
-        it "should can have any order" do
-          @test.move_to(y: 2, x:1).should be == [1,2]
+    describe 'Multiple Named Parameter (in any order)' do
+      specify %q{
+        named def move_to(x,y)
+          [x,y]
         end
 
-        it "should can be optional" do
-          @test.three_params_first_optional(y:10,z:20).should be == [:x,10,20]
-          @test.three_params_middle_optional(z:20,x:10).should be == [10,:y,20]
-          @test.three_params_last_optional(x:20,y:10).should be == [20,10,:z]
-          @test.three_params_first_2_optionals(z:10).should be == [:x,:y,10]
-          @test.three_params_last_2_optionals(x:10).should be == [10,:y,:z]
+        move_to x: 1,y: 2
+          # => [1,2]
+
+        move_to y: 2, x: 1
+          # => [1,2]
+      } do
+        module Kernel
+          named def move_to(x,y)
+            [x,y]
+          end
         end
+
+        position = move_to x: 1,y: 2
+        position.should be == [1,2]
+
+        position = move_to y: 2, x: 1
+        position.should be == [1,2]
       end
+    end
 
-      context "ArgumentError when" do
-        it "called but not defined" do
-          lambda{@test.say(phrase: "hi!",undefined: "hugo")}.should raise_error ArgumentError
-          lambda{@test.say(undefined: "hugo")}.should raise_error ArgumentError
+    describe 'ArgumentError when given undefined args' do
+      specify %q{
+        named def say(phrase)
         end
 
-        it "required but not called" do
-          lambda {@test.say}.should raise_error ArgumentError
+        say phrase: "hi!",undefined: "test"
+          #=> ArgumentError
+      } do
+        module Kernel
+          named def say(phrase)
+          end
         end
+
+        lambda{say(phrase: "hi!",undefined: "hugo")}.should raise_error ArgumentError, /'undefined'[\w\s]*'say'/
       end
+    end
 
+    describe 'ArgumentError when not given required args' do
+      specify %q{
+        named def say(phrase)
+        end
+
+        say
+          #=> ArgumentError
+      } do
+        module Kernel
+          named def say(phrase)
+          end
+        end
+
+        lambda {say}.should raise_error ArgumentError, /'phrase'[\w\s]*'say'/
+      end
     end
   end
 
   describe "no named method" do
-    it "should be call with normal parameters" do
+    it "can be called with normal parameters" do
+      module Kernel
+        def no_named_say(phrase)
+          phrase
+        end
+      end
+
       phrase = @test.no_named_say "Hi!"
       phrase.should be == "Hi!"
     end

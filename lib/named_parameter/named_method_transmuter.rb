@@ -5,7 +5,7 @@ class NamedMethodTransmuter
     method.owner.instance_eval do
 			define_method (method.name) do |options={}|
 				errors = named_method.errors_when_called_with options
-				raise ArgumentError,*errors.first unless errors.empty?
+				raise ArgumentError,*errors.first.raise_args unless errors.empty?
 
 				original_parameters = []
 				method.parameters.each do |parameter|
