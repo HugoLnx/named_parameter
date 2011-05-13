@@ -6,8 +6,8 @@ Ruby's 2.0 have this, just install this gem and have fun!
 
 ## How it works
 Just extend the module NamedParameter in your class/module and use the method 'named'
-before define your method, when you call it, use a hash that's key is the parameter
-name. See this example:
+before define your method, when you call it, use a hash with parameters name as keys.
+See this example:
 
     class People
       extend NamedParameter
