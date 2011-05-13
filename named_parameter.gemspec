@@ -5,24 +5,25 @@
 
 Gem::Specification.new do |s|
   s.name = %q{named_parameter}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Hugo Roque (a.k.a HugoLnx)"]
-  s.date = %q{2011-05-12}
+  s.date = %q{2011-05-13}
   s.description = %q{Allows named parameter in ruby}
   s.email = %q{hugolnx@gmail.com}
   s.extra_rdoc_files = [
-    "README"
+    "README.md"
   ]
   s.files = [
     "Gemfile",
-    "README",
+    "README.md",
     "Rakefile",
     "lib/.named_parameter.rb.swo",
     "lib/named_parameter.rb",
     "lib/named_parameter/error.rb",
     "lib/named_parameter/errors.rb",
+    "lib/named_parameter/errors/not_hash.rb",
     "lib/named_parameter/errors/required_parameters.rb",
     "lib/named_parameter/errors/undefined_parameters.rb",
     "lib/named_parameter/named_method.rb",
@@ -32,10 +33,9 @@ Gem::Specification.new do |s|
     "named_parameter.gemspec",
     "spec/features/collective_named_methods_feature_spec.rb",
     "spec/features/individual_named_method_feature_spec.rb",
-    "spec/interfaces/errors_interface.rb",
     "spec/spec_helper.rb",
-    "spec/support/interface_helper.rb",
     "spec/unit/error_spec.rb",
+    "spec/unit/errors/not_hash_spec.rb",
     "spec/unit/errors/required_parameters_spec.rb",
     "spec/unit/errors/undefined_parameters_spec.rb",
     "spec/unit/named_method_spec.rb",
