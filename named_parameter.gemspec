@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "lib/named_parameter/named_method_transmuter.rb",
     "lib/named_parameter/named_parameter.rb",
     "lib/named_parameter/parameters.rb",
+    "named_parameter.gemspec",
     "spec/features/collective_named_methods_feature_spec.rb",
     "spec/features/individual_named_method_feature_spec.rb",
     "spec/interfaces/errors_interface.rb",
