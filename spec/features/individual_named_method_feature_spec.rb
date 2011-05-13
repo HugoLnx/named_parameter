@@ -126,6 +126,27 @@ describe "individual named method feature" do
         lambda {People.new.say}.should raise_error ArgumentError, /'phrase'[\w\s]*'say'/
       end
     end
+
+    describe 'ArgumentError when given a non Hash argument' do
+      specify %q{
+        class People
+          extend NamedParameter
+          named def say(phrase)
+          end
+        end
+
+        People.new.say
+          #=> ArgumentError
+      } do
+        class People
+          extend NamedParameter
+          named def say(phrase)
+          end
+        end
+
+        lambda {People.new.say("non Hash argument")}.should raise_error ArgumentError, /"non Hash argument"[\w\s]*'say'/
+      end
+    end
   end
 
   describe "no named method" do

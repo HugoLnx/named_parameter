@@ -56,6 +56,7 @@ module NamedParameter
       before :each do
         Errors::RequiredParameters.stub!(:all_when).and_return([])
         Errors::UndefinedParameters.stub!(:all_when).and_return([])
+        Errors::NotHash.stub!(:all_when).and_return([])
         method = @instance.method(:method1)
         @named_method = NamedMethod.new(method)
       end
@@ -70,6 +71,12 @@ module NamedParameter
         it "Errors::RequiredParameters.all_when(method,{called_with:args})" do
           Errors::RequiredParameters.should_receive(:all_when)
                                     .and_return([])
+          @named_method.errors_when_called_with(:args)
+        end
+
+        it "Errors::NotHash.all_when(method,{called_with:args})" do
+          Errors::NotHash.should_receive(:all_when)
+                         .and_return([])
           @named_method.errors_when_called_with(:args)
         end
       end

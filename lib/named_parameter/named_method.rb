@@ -15,10 +15,14 @@ module NamedParameter
 
     def errors_when_called_with(args={})
       errors = []
-      errors += Errors::UndefinedParameters.all_when self, 
-                                                    :called_with => args
-      errors += Errors::RequiredParameters.all_when self, 
-                                                    :called_with => args
+      errors += Errors::NotHash.all_when self, 
+                                         :called_with => args
+      if errors.empty?
+        errors += Errors::UndefinedParameters.all_when self, 
+                                                      :called_with => args
+        errors += Errors::RequiredParameters.all_when self, 
+                                                      :called_with => args
+      end
       errors
     end
 
