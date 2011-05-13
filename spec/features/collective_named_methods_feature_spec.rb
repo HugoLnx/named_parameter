@@ -1,56 +1,8 @@
 require 'spec_helper'
 
 describe "collective named method feature" do
-  before :all do
-    pending
-    class Test
-      def no_named_say(phrase)
-        phrase
-      end
-
-    named
-      def say(phrase)
-        phrase
-      end
-
-      def optional_say(phrase="I'm mute")
-        phrase
-      end
-
-      def move_to(x,y)
-        [x,y]
-      end
-
-      def three_params_first_optional(x=:x,y,z)
-        [x,y,z]
-      end
-
-      def three_params_middle_optional(x,y=:y,z)
-        [x,y,z]
-      end
-
-      def three_params_last_optional(x,y,z=:z)
-        [x,y,z]
-      end
-
-      def three_params_first_2_optionals(x=:x,y=:y,z)
-        [x,y,z]
-      end
-
-      def three_params_last_2_optionals(x,y=:y,z=:z)
-        [x,y,z]
-      end
-    end
-
-    class Test
-      def after_opened_say(phrase)
-        phrase
-      end
-    end
-  end
-
   before :each do
-    @test = Test.new
+    pending "Collective named methods don't is supported yet"
   end
 
   describe "named method" do

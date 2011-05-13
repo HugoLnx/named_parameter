@@ -1,11 +1,11 @@
-module Errors
+module NamedParameter::Errors
   class UndefinedParameters
     class << self
       def all_when(named_method,options)
         args = options[:called_with]
         args.collect do |arg|
           unless match?(named_method, arg)
-            error = Error.new(named_method, arg.first, caller)
+            error = NamedParameter::Error.new(named_method, arg.first, caller)
             UndefinedParameters.new(error)
           end
         end.compact

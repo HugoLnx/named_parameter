@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Errors
+module NamedParameter::Errors
   describe UndefinedParameters do
     describe '#initialize(error)' do
       describe 'initialize instance variables' do

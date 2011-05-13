@@ -1,10 +1,10 @@
-module Errors
+module NamedParameter::Errors
   class RequiredParameters
     def self.all_when(named_method,options)
       args = options[:called_with]
       named_method.required_parameters.collect do |parameter_name|
         unless args.has_key?(parameter_name) || args.has_key?(parameter_name.to_sym)
-          error = Error.new(named_method,parameter_name,caller)
+          error = NamedParameter::Error.new(named_method,parameter_name,caller)
           RequiredParameters.new(error)
         end
       end.compact
