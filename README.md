@@ -9,6 +9,9 @@ Just extend the module NamedParameter in your class/module and use the method 'n
 before define your method, when you call it, use a hash with parameters name as keys.
 See this example:
 
+    require 'rubygems'
+    require 'named_parameter'
+     
     class People
       extend NamedParameter
       
@@ -21,6 +24,9 @@ See this example:
 
 Or maybe you want to define an optional parameter, no problem!
 
+    require 'rubygems'
+    require 'named_parameter'
+     
     class People
       extend NamedParameter
       
@@ -33,6 +39,9 @@ Or maybe you want to define an optional parameter, no problem!
 
 Multiple arguments? Of course!
 
+    require 'rubygems'
+    require 'named_parameter'
+     
     class Point
       extend NamedParameter
       
