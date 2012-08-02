@@ -66,22 +66,6 @@ module NamedParameter::Errors
           end
         end
       end
-
-
-
-      describe 'integrations' do
-        after :each do
-          instance.raise_args
-        end
-
-        specify '@error.argument_name' do
-          @error.should_receive :argument_name
-        end
-
-        specify '@error.named_method' do
-          @error.should_receive :named_method
-        end
-      end
     end
 
     describe '.all_when(named_method,{called_with:args})' do
@@ -113,16 +97,6 @@ module NamedParameter::Errors
             @named_method.stub!(:have_a_parameter_like? => true)
             the_return.should be == []
           end
-        end
-      end
-
-      describe 'integrations' do
-        specify "named_method.have_a_parameter_like?(arg)" do
-          named_method = stub(:named_method)
-          args = {:arg_name => :value}
-          named_method.should_receive(:have_a_parameter_like?)
-                      .with(:arg_name)
-          UndefinedParameters.all_when(named_method,:called_with => args)
         end
       end
     end

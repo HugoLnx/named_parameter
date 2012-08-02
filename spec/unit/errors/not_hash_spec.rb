@@ -66,22 +66,6 @@ module NamedParameter::Errors
           end
         end
       end
-
-
-
-      describe 'integrations' do
-        after :each do
-          instance.raise_args
-        end
-
-        specify '@error.argument_name' do
-          @error.should_receive :argument_name
-        end
-
-        specify '@error.named_method' do
-          @error.should_receive :named_method
-        end
-      end
     end
 
     describe '.all_when(named_method,{called_with:arg})' do

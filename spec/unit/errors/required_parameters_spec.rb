@@ -66,22 +66,6 @@ module NamedParameter::Errors
           end
         end
       end
-
-
-
-      describe 'integrations' do
-        after :each do
-          instance.raise_args
-        end
-
-        specify '@error.argument_name' do
-          @error.should_receive :argument_name
-        end
-
-        specify '@error.named_method' do
-          @error.should_receive :named_method
-        end
-      end
     end
 
     describe '.all_when(named_method,{called_with:arg})' do
@@ -114,15 +98,6 @@ module NamedParameter::Errors
             @args = {:param1 => 'value1'}
             the_return.should be_empty
           end
-        end
-      end
-
-      describe 'integrations' do
-        specify "named_method.required_parameters" do
-          named_method = stub(:named_method)
-          named_method.should_receive(:required_parameters)
-                      .and_return([])
-          RequiredParameters.all_when(named_method,:called_with => [])
         end
       end
     end
