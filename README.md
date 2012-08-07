@@ -1,4 +1,4 @@
-# Named Parameter `v0.0.3`
+# Named Parameter `v0.0.4`
 
 ## Description
 That you ever dream with named parameter in Ruby? Well, you doesn't have to pray to
@@ -64,6 +64,24 @@ If you like sigleton classes you will love that:
       named def self.move_to(x,y,z=0)
         puts "Moving to [#{x},#{y},#{z}]"
       end
+    end
+    
+    Point.move_to(y: 30,x: 50)
+
+
+And that feature too:
+
+    require 'rubygems'
+    require 'named_parameter'
+     
+    class Point
+      extend NamedParameter
+      
+			class << self
+				named def move_to(x,y,z=0)
+					puts "Moving to [#{x},#{y},#{z}]"
+				end
+			end
     end
     
     Point.move_to(y: 30,x: 50)
