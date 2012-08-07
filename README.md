@@ -77,11 +77,11 @@ And that feature too:
     class Point
       extend NamedParameter
       
-			class << self
-				named def move_to(x,y,z=0)
-					puts "Moving to [#{x},#{y},#{z}]"
-				end
-			end
+		  class << self
+		    named def move_to(x,y,z=0)
+		      puts "Moving to [#{x},#{y},#{z}]"
+		    end
+		  end
     end
     
     Point.move_to(y: 30,x: 50)
