@@ -20,9 +20,7 @@ module NamedParameter::Errors
 
   private
     def error_message
-      msg = "expected a Hash but #{@error.argument_name.inspect} received by named method '#{@error.named_method.method.name}'"
-      p msg
-      msg
+      return "expected a Hash but #{@error.argument_name.inspect} received by named method '#{@error.named_method.method.name}'"
     end
   end
 end
