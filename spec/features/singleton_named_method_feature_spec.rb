@@ -159,10 +159,8 @@ describe "singleton named method feature" do
   describe "no named method" do
     it "can be called with normal parameters" do
       class People
-        class << self
-          def no_named_say(phrase)
-            phrase
-          end
+        def self.no_named_say(phrase)
+          phrase
         end
       end
 
