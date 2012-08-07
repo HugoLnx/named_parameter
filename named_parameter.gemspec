@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{named_parameter}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Hugo Roque (a.k.a HugoLnx)"]
-  s.date = %q{2012-08-02}
+  s.date = %q{2012-08-07}
   s.description = %q{Allows named parameter in ruby}
   s.email = %q{hugolnx@gmail.com}
   s.extra_rdoc_files = [
@@ -30,9 +30,9 @@ Gem::Specification.new do |s|
     "lib/named_parameter/named_parameter.rb",
     "lib/named_parameter/parameters.rb",
     "named_parameter.gemspec",
-    "spec/features/collective_named_methods_feature_spec.rb",
     "spec/features/individual_named_method_feature_spec.rb",
     "spec/features/singleton_named_method_feature_spec.rb",
+    "spec/features/class_self_named_method_feature_spec.rb",
     "spec/spec_helper.rb",
     "spec/unit/error_spec.rb",
     "spec/unit/errors/not_hash_spec.rb",
