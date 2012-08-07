@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "singleton named method feature" do
+describe "class << self named method feature" do
   describe "becomes possible:" do
     describe 'Named Parameter' do
       specify %q{
