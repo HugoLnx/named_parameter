@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "named_parameter"
-  s.version = "0.0.5"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Hugo Roque (a.k.a HugoLnx)"]
@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
     "Gemfile",
     "README.md",
     "Rakefile",
-    "lib/.named_parameter.rb.swo",
     "lib/named_parameter.rb",
     "lib/named_parameter/error.rb",
     "lib/named_parameter/errors.rb",

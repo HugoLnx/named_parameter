@@ -14,7 +14,7 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.version = "0.0.5"
+  gem.version = "1.0.0"
   gem.name = "named_parameter"
   gem.homepage = "http://github.com/hugolnx/named_parameter"
   gem.license = "MIT"
