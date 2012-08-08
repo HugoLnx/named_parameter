@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe "above named" do
   describe "singleton named method feature" do
-    before(:each){pending}
-
     describe "becomes possible:" do
       describe 'Named Parameter' do
         specify %q{
