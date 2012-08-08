@@ -1,42 +1,42 @@
 module NamedParameter
+  include NamedAbove
+  include NamedInline
+
   def named(above=true)
     if above
-      @become_named = true
+      above_named
     else
-      method = @last_method_added
-      NamedParameter::NamedMethodTransmuter.transmute method
+      inline_named
     end
   end
 
   def self.extended(klass)
-    klass.singleton_class.instance_eval do
-      define_singleton_method :named do |above=true|
-        if above
-          klass.instance_variable_set(:@become_named, true)
-        else
-          method = klass.instance_variable_get(:@last_method_added)
-          NamedParameter::NamedMethodTransmuter.transmute method
-        end
+    def_singleton_named(klass) do |above|
+      if above
+        NamedAbove.above_singleton_named(klass)
+      else
+        NamedInline.inline_singleton_named(klass)
       end
     end
   end
 
-  def method_added(method_name)
-    @last_method_added = self.instance_method(method_name)
-    if @become_named
-      @become_named = false
-      method = @last_method_added
-      NamedParameter::NamedMethodTransmuter.transmute method
-    end
+  def method_added(name)
+    inline_method_added name
+    above_method_added name
   end
 
 
-  def singleton_method_added(method_name)
-    @last_method_added = self.method(method_name)
-    if @become_named
-      @become_named = false
-      method = @last_method_added
-      NamedParameter::NamedMethodTransmuter.transmute method
+  def singleton_method_added(name)
+    inline_singleton_method_added name
+    above_singleton_method_added name
+  end
+
+private
+  def self.def_singleton_named(klass, &block)
+    klass.singleton_class.instance_eval do
+      define_singleton_method :named do |above=true|
+        block.call(above)
+      end
     end
   end
 end
