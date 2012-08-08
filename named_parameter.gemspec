@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{named_parameter}
-  s.version = "0.0.4"
+  s.name = "named_parameter"
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Hugo Roque (a.k.a HugoLnx)"]
-  s.date = %q{2012-08-07}
-  s.description = %q{Allows named parameter in ruby}
-  s.email = %q{hugolnx@gmail.com}
+  s.date = "2012-08-08"
+  s.description = "Allows named parameter in ruby"
+  s.email = "hugolnx@gmail.com"
   s.extra_rdoc_files = [
     "README.md"
   ]
@@ -19,20 +19,26 @@ Gem::Specification.new do |s|
     "Gemfile",
     "README.md",
     "Rakefile",
+    "lib/.named_parameter.rb.swo",
     "lib/named_parameter.rb",
     "lib/named_parameter/error.rb",
     "lib/named_parameter/errors.rb",
     "lib/named_parameter/errors/not_hash.rb",
     "lib/named_parameter/errors/required_parameters.rb",
     "lib/named_parameter/errors/undefined_parameters.rb",
+    "lib/named_parameter/named_above.rb",
+    "lib/named_parameter/named_inline.rb",
     "lib/named_parameter/named_method.rb",
     "lib/named_parameter/named_method_transmuter.rb",
     "lib/named_parameter/named_parameter.rb",
     "lib/named_parameter/parameters.rb",
     "named_parameter.gemspec",
-    "spec/features/individual_named_method_feature_spec.rb",
-    "spec/features/singleton_named_method_feature_spec.rb",
-    "spec/features/class_self_named_method_feature_spec.rb",
+    "spec/features/named_above/class_self_named_method_feature_spec.rb",
+    "spec/features/named_above/individual_named_method_feature_spec.rb",
+    "spec/features/named_above/singleton_named_method_feature_spec.rb",
+    "spec/features/named_inline/class_self_named_method_feature_spec.rb",
+    "spec/features/named_inline/individual_named_method_feature_spec.rb",
+    "spec/features/named_inline/singleton_named_method_feature_spec.rb",
     "spec/spec_helper.rb",
     "spec/unit/error_spec.rb",
     "spec/unit/errors/not_hash_spec.rb",
@@ -41,11 +47,11 @@ Gem::Specification.new do |s|
     "spec/unit/named_method_spec.rb",
     "spec/unit/named_method_transmuter_spec.rb"
   ]
-  s.homepage = %q{http://github.com/hugolnx/named_parameter}
+  s.homepage = "http://github.com/hugolnx/named_parameter"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Allows named parameter in ruby}
+  s.rubygems_version = "1.8.15"
+  s.summary = "Allows named parameter in ruby"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
