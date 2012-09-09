@@ -1,3 +1,4 @@
+require 'named_parameter/version'
 require 'named_parameter/named_method'
 require 'named_parameter/named_method_transmuter'
 require 'named_parameter/errors'
