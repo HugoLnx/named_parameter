@@ -24,6 +24,8 @@ module NamedParameter
       return arguments
     end
 
+  private
+
     def fill_no_arguments(arguments)
       while arguments.last.equal? NO_ARGUMENT
         last_index = arguments.size - 1
@@ -33,6 +35,11 @@ module NamedParameter
       if arguments.any?{|arg| arg.equal? NO_ARGUMENT}
         filepath = @method.source_location[0]
         linenumber = @method.source_location[1]
+
+        if filepath.downcase == "(irb)"
+            msg = NamedParameter::Errors::OnIrbException::MESSAGE
+            raise NamedParameter::Errors::OnIrbException, msg
+        end
 
         content = File.read(filepath).split("\n")[(linenumber-1)..-1].join.strip
         
