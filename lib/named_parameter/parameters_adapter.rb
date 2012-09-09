@@ -28,7 +28,7 @@ module NamedParameter
       match = file_fragment.match /^[^\(]*\(([^\)]*)\)/
       args_fragment = match[1]
       args_fragments = args_fragment.split(",")
-      default_values = args_fragments.map{|frag| eval(frag.gsub(/^[^=]*=/, ""))}
+      default_values = args_fragments.map{|frag| eval(frag.gsub(/^[^=]*(=|$)/, ""))}
       return default_values
     end
 
