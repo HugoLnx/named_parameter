@@ -141,5 +141,96 @@ describe "BugFix: Parameters order spec" do
         end
       end
     end
+
+    context %q{named def whatever(a,b="z",c=lambda{|arg1,arg2| arg1 + "test"})} do
+      context "inline" do
+        specify "parameters maintain order" do
+          class SomeClass
+            extend NamedParameter
+
+            named def whatever(a,b="z",c=lambda{|arg1,arg2| arg1 + "test"},d="z")
+              return [a,b,c,d]
+            end
+          end
+
+          obj = SomeClass.new
+          
+          return_ = obj.whatever(
+            a: "a",
+            d: "d"
+          )
+          return_[0].should == "a"
+          return_[1].should == "z"
+          return_[2].should be_a Proc
+          return_[3].should == "d"
+        end
+      end
+
+      context "above" do
+        specify "parameters maintain order" do
+          class SomeClass
+            extend NamedParameter
+
+            named
+            def whatever(a,b="z",c=lambda{|arg1,arg2| arg1 + "test"},d="z")
+              return [a,b,c,d]
+            end
+          end
+
+          obj = SomeClass.new
+          
+          return_ = obj.whatever(
+            a: "a",
+            d: "d"
+          )
+          return_[0].should == "a"
+          return_[1].should == "z"
+          return_[2].should be_a Proc
+          return_[3].should == "d"
+        end
+      end
+    end
+
+    context %q{named def whatever(a,b="z",c="z,z",d="z")} do
+      context "inline" do
+        specify "parameters maintain order" do
+          class SomeClass
+            extend NamedParameter
+
+            named def whatever(a,b="z",c="z,z",d="z")
+              return [a,b,c,d]
+            end
+          end
+
+          obj = SomeClass.new
+          
+          obj.whatever(
+            a: "a",
+            d: "d"
+          ).should == %w{a z z,z d}
+        end
+      end
+
+      context "above" do
+        specify "parameters maintain order" do
+          class SomeClass
+            extend NamedParameter
+
+            named
+            def whatever(a,b="z",c="z,z",d="z")
+              return [a,b,c,d]
+            end
+          end
+
+          obj = SomeClass.new
+          
+          obj.whatever(
+            a: "a",
+            d: "d"
+          ).should == %w{a z z,z d}
+        end
+      end
+    end
+
   end
 end

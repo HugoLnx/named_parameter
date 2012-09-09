@@ -24,14 +24,6 @@ module NamedParameter
       return arguments
     end
 
-    def extract_default_values(file_fragment)
-      match = file_fragment.match /^[^\(]*\(([^\)]*)\)/
-      args_fragment = match[1]
-      args_fragments = args_fragment.split(",")
-      default_values = args_fragments.map{|frag| eval(frag.gsub(/^[^=]*(=|$)/, ""))}
-      return default_values
-    end
-
     def fill_no_arguments(arguments)
       while arguments.last.equal? NO_ARGUMENT
         last_index = arguments.size - 1
@@ -53,6 +45,35 @@ module NamedParameter
       end
 
       return arguments
+    end
+
+    def extract_default_values(file_fragment)
+      match = file_fragment.match /^[^\(]*\(([^\)]*)\)/
+      args_fragment = match[1]
+      args_fragments = extract_args_fragments args_fragment
+      default_values = args_fragments.map{|frag| eval(frag.gsub(/^[^=]*(=|$)/, ""))}
+      return default_values
+    end
+
+    def extract_args_fragments(fragment)
+      base_frags = fragment.split ","
+      frags = []
+      i = 0
+      while i < base_frags.size
+        frag = base_frags[i]
+        while inconsistent_fragment?(frag)
+          i += 1
+          frag += ",#{base_frags[i]}"
+        end
+        frags << frag
+        i += 1;
+      end
+      return frags
+    end
+
+    def inconsistent_fragment?(fragment)
+      return fragment.count("([{") != fragment.count(")]}") ||
+             fragment.count(%q{"'}).odd?
     end
   end
 end
