@@ -73,7 +73,7 @@ module NamedParameter
 
     def inconsistent_fragment?(fragment)
       return fragment.count("([{") != fragment.count(")]}") ||
-             fragment.count(%q{"'}).odd?
+             fragment.count(%q{"'/}).odd?
     end
   end
 end

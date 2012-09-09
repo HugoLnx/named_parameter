@@ -232,5 +232,46 @@ describe "BugFix: Parameters order spec" do
       end
     end
 
+    context %q{named def whatever(a,b="z",c=/z,z/,d="z")} do
+      context "inline" do
+        specify "parameters maintain order" do
+          class SomeClass
+            extend NamedParameter
+
+            named def whatever(a,b="z",c=/z,z/,d="z")
+              return [a,b,c,d]
+            end
+          end
+
+          obj = SomeClass.new
+          
+          obj.whatever(
+            a: "a",
+            d: "d"
+          ).should == ["a", "z", /z,z/, "d"]
+        end
+      end
+
+      context "above" do
+        specify "parameters maintain order" do
+          class SomeClass
+            extend NamedParameter
+
+            named
+            def whatever(a,b="z",c=/z,z/,d="z")
+              return [a,b,c,d]
+            end
+          end
+
+          obj = SomeClass.new
+          
+          obj.whatever(
+            a: "a",
+            d: "d"
+          ).should == ["a", "z", /z,z/, "d"]
+        end
+      end
+    end
+
   end
 end
