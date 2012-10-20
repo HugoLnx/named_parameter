@@ -1,4 +1,4 @@
-# Named Parameter `v1.0.0`
+# Named Parameter `v1.0.2`
 
 ## Description
 That you ever dream with named parameter in Ruby? Well, you doesn't have to pray to
