@@ -87,7 +87,7 @@ describe "BugFix: should suport any kind use combination of optional parameters"
     end
 
 
-    context %q{named def whatever(a="z",b="z",c="z", d="z",e,f)} do
+    context %q{named def whatever(a,b,c="z", d="z",e="z",f="z")} do
       specify "inline" do
         class SomeClass
           extend NamedParameter
