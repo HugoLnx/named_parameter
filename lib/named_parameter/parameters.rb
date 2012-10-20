@@ -5,7 +5,7 @@ class Parameters
 
   def initialize(parameters_array)
     @entries = parameters_array.collect do |parameter_array| 
-      Parameter.new(parameter_array
+      Parameter.new parameter_array
     end
   end
 
